@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>SIUS</title>
+</head>
+<body>
+    <header>
+        <img src="img/logoLeon.png" alt="Logo">
+        <nav>
+            <ul>
+                <li><a href="#">INICIO</a></li>
+                <li><a href="#">TRÁMITES &#9660;</a>
+                    <ul>
+                        <li><a href="#">Catalogo de Trámites</a></li>
+                        <li><a href="#">Mi Carpeta Ciudadana</a></li>
+                        <li><a href="#">Inicia tu Trámite</a></li>
+                        <li><a href="#">Consulta tu Trámite</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">SERVICIOS &#9660;</a>
+                    <ul>
+                        <li><a href="#">Recursos Informativos y Cartográficos</a></li>
+                        <li><a href="#">Planos Informativos de las Colonias</a></li>
+                        <li><a href="#">Sistema Informativo de Uso de Suelo</a></li>
+                        <li><a href="#">Urbanet</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">CONSULTAS &#9660;</a>
+                    <ul>
+                        <li><a href="#">Padrón de Figuras Autorizadas</a></li>
+                        <li><a href="#">Ubica tu delegación</a></li>
+                        <li><a href="#">Giros SARE</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">ENLACES &#9660;</a>
+                    <ul>
+                        <li><a href="#">Ventanilla Virtual Sin Filas</a></li>
+                        <li><a href="#">Leyes y Reglamentos</a></li>
+                        <li><a href="#">Aviso de Privacidad</a></li>
+                        <li><a href="#">Unidad de Transparencia</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">CONTACTO &#9660;</a>
+                    <ul>
+                        <li><a href="#">Directorio Telefónico</a></li>
+                        <li><a href="#">Directorio Electrónico</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="contenedor-mapa"></div>
+        <div class="form">
+            <div id="detalles-titulo">
+                <h1>Detalles del predio</h1>
+                <button id="filter-button">Mostrar/Ocultar Filtro</button>
+            </div>
+            <div id="filtro" class="hidden">
+                <label for="layer-select">Selecciona una opción:</label>
+                <select id="layer-select">
+                    <option value="none">Ninguna</option>
+                    <option value="AREA NATURAL PROTEGIDA">Área Natural Protegida</option>
+                    <option value="CALLES">Calles</option>
+                    <option value="CENTRO HISTORICO">Centro Histórico</option>
+                    <option value="CERRITO DE JEREZ">Cerrito de Jerez</option>
+                    <option value="CERRO GORDO">Cerro Gordo</option>
+                    <option value="COECILLO">Coecillo</option>
+                    <option value="COLONIAS">Colonias</option>
+                    <option value="DONACIONES">Donaciones</option>
+                    <option value="EL CARMEN">El Carmen</option>
+                    <option value="LAS JOYAS">Las Joyas</option>
+                    <option value="MANZANAS">Manzanas</option>
+                    <option value="NUMEROS OFICIALES">Números Oficiales</option>
+                    <option value="OTRAS AREAS">Otras Áreas</option>
+                    <option value="PREDIOS">Predios</option>
+                    <option value="RESTRICCIONES">Restricciones</option>
+                    <option value="SAN JUAN BOSCO">San Juan Bosco</option>
+                    <option value="SAN MIGUEL">San Miguel</option>
+                    <option value="SECCIONES">Secciones</option>
+                    <option value="SECTORES">Sectores</option>
+                    <option value="USOS REZUS">Usos Rezus**</option>
+                    <option value="VIALIDADES V CORREDORES">Vialidades y Corredores**</option>
+                    <option value="VIAS PRIMARIAS">Vías Primarias</option>
+                </select>
+            </div>
+            <div id="formulario">
+                <form id="data-form">
+                    <label for="calle">Calle:</label>
+                    <input type="text" id="calle" name="calle">
+                    <label for="colonia">Colonia:</label>
+                    <input type="text" id="colonia" name="colonia">
+                    <label for="clasificacion">Clasificación:</label>
+                    <input type="text" id="clasificacion" name="clasificacion">
+                    <label for="num_ext">Número Exterior:</label>
+                    <input type="text" id="num_ext" name="num_ext">
+                    <label for="usos">Usos:</label>
+                    <input type="text" id="usos" name="usos">
+                    <label for="desc_usos">Descripción de Usos:</label>
+                    <textarea id="desc_usos" name="desc_usos"></textarea>
+                    <label for="sector">Sector:</label>
+                    <input type="text" id="sector" name="sector">
+                    <label for="nombre_sect">Nombre del Sector:</label>
+                    <input type="text" id="nombre_sect" name="nombre_sect">
+                    <button id="generate-form" type="button" onclick="abrirModal()">Generar</button>
+                    <br>
+                    <div id="pdf-download-container">
+                        <button type="button" style="background-color: #00544e;" id="generate-codreg">Consultar codigo reglamentario</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        
+            <div id="label-form">Llene la información necesaria</div><br>
+            <label for="modalidad_tramite">Modalidad del trámite:</label>
+            <select id="modalidad_tramite" name="modalidad_tramite">
+                <option value="uso_info">Uso Informativo</option>
+                <option value="uso_fac">Uso factible</option>
+            </select>
+
+            <div class="radio-buttons">
+                <div>
+                    <input type="radio" id="otra_vialidad" name="opcion" data-value="Sí">
+                    <label for="otra_vialidad" class="radio-button">Otra vialidad (no mostrada)</label>
+                </div>
+            
+                <div>
+                    <input type="radio" id="nombre_calle" name="opcion" data-value="Sí">
+                    <label for="nombre_calle" class="radio-button">Nombre calle</label>
+                </div>
+            </div>
+            
+            <label for="vialidad_cerrada">¿Su predio se encuentra en una vialidad o calle cerrada?</label>
+            <div class="button-group" id="vialidad-cerrada-group">
+                <button type="button" class="btn-option" id="vialidad_cerrada_si" data-value="Sí">Sí</button>
+                <button type="button" class="btn-option" id="vialidad_cerrada_no" data-value="No">No</button>
+            </div>
+            <input type="hidden" id="vialidad_cerrada" name="vialidad_cerrada">
+
+            <label for="superficie_total">Superficie total (Mts):</label>
+            <input type="text" id="superficie_total" name="superficie_total">
+
+            <div id="extra-form-container"></div>
+
+            <button type="button" id="generate-pdf">Generar PDF</button>
+        </form>
+    </div>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

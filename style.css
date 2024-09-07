@@ -1,0 +1,333 @@
+@font-face {
+    font-family: azoSanz;
+    src: url("fonts/azoSanz/AzoSans-Regular.otf");
+}
+@font-face {
+    font-family: azoSanzBold;
+    src: url("fonts/azoSanz/AzoSans-Bold.otf");
+}
+body {
+    font-family: azoSanz;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+header {
+    background-color: white;
+    height: 100px;
+    color: #163d65;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header img {
+    height: 80%;
+    margin-right: 20px;
+    margin-left: 40px;
+}
+header nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    margin-right: 25px;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+nav ul li {
+    position: relative;
+}
+nav ul li a {
+    font-family: azoSanzBold;
+    font-size: 15px;
+    color: #224a71;
+    text-decoration: none;
+    padding: 0 15px;
+    line-height: 40px;
+    display: block;
+}
+nav ul li a:hover {
+    background-color: #163a63;
+    border-radius: 5px;
+    color: white;
+}
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border-color: darkgray;
+    overflow: hidden;
+    z-index: 1000;
+}
+nav ul li:hover ul {
+    display: block;
+}
+nav ul li ul li a {
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+nav ul li ul li a:hover {
+    background-color: #f4f4f5;
+    color: black;
+}
+.container1 {
+    display: flex;
+    flex: 1;
+}
+.container {
+    display: flex;
+    flex: 1;
+}
+#contenedor-mapa {
+    flex: 2.5;
+    height: 100%;
+}
+#detalles-titulo {
+    background-color: #00649d;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 5%;
+}
+.form h1 {
+    margin: 0;
+    padding: 8px;
+    font-weight: normal;
+    font-size: 24px;
+}
+.form {
+    flex: 1;
+    background-color: #efede9;
+    border-left: 2px solid #ddd;
+    overflow-y: auto;
+}
+#formulario {
+    padding: 20px;
+}
+.form h2 {
+    margin-top: 0;
+    display: flex;
+}
+.form input, .form select, .form textarea {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form button:hover {
+    background-color: #0056b3;
+}
+select#layer-select {
+    font-family: azoSanz;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+}
+select#layer-select option:checked {
+    background-color: #007bff;
+    color: white;
+}
+select#layer-select option:hover {
+    background-color: #f0f0f0;
+}
+#filtro {
+    padding: 20px;
+}
+.hidden {
+    display: none;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+form label, form input, form textarea {
+    margin-bottom: 0px;
+}
+form button {
+    align-self: flex-start;
+    padding: 10px;
+    background-color: #163d65;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #224a71;
+}
+.form {
+    margin-top: 0px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #efede9;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.modal-header {
+    background-color: #efede9;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    display: flex;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: 0;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #03958b;
+    color: white;
+    flex: 1;
+    margin: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.button-group button.selected {
+    background-color: #003c5e;
+    color: white;
+}
+
+.button-group button:hover {
+    background-color: #003c5e;
+}
+
+#generate-pdf {
+    background-color: #00716a;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: auto;
+    align-self: flex-end;
+}
+
+
+#generate-pdf:hover {
+    background-color: #00796b;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#label-form {
+    color: #625f5f;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-buttons div {
+    margin-bottom: 10px;
+}
+
+.radio-button {
+    display: inline-block;
+    padding: 8px 12px;
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.radio-button input[type="radio"] {
+    display: none; /* Oculta el input radio original */
+}
+
+.radio-button input[type="radio"]:checked + label {
+    background-color: #00796b;
+}
+
+#pdf-download-container .btn-option {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#pdf-download-container .btn-option:hover {
+    background-color: #0056b3;
+}
